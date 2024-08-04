@@ -50,7 +50,7 @@ const Sidebar = ({ navigation }) => {
                 onPress={() => {
                   if (item.title === 'Logout') {
                     navigation.closeDrawer();
-                    alert(item.title);
+                    alert(item.title+' Clicked');
                   }
                 }}
                 >
