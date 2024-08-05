@@ -1,6 +1,6 @@
-import { View, Text, Image, Alert } from 'react-native'
-import React from 'react'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { View, Text, Image, TouchableOpacity, Modal } from 'react-native';
+import React, { useState } from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Home from '../Bottom/Home';
 import Settings from '../Bottom/Settings';
@@ -9,56 +9,86 @@ import BottomTab from '../Bottom/BottomTab';
 const Bottom = createBottomTabNavigator();
 
 const HomeScreen = () => {
+  const [isVisible, setVisible] = useState(false); // State for modal visibility
+
   return (
-    <Bottom.Navigator>
-      <Bottom.Screen
-        name='Home'
-        component={Home}
-        options={{
-          headerShown: false,
-          tabBarIcon: ({ color, size }) => (
-            <Image
-              source={require('../images/home.png')}
-              style={{ width: 24, height: 24, tintColor: color }}
-            />
-          ),
-        }}
-      />
+    <View style={{ flex: 1 }}>
+      <Bottom.Navigator>
+        <Bottom.Screen
+          name="Home"
+          component={Home}
+          options={{
+            headerShown: false,
+            tabBarIcon: ({ color, size }) => (
+              <Image
+                source={require('../images/home.png')}
+                style={{ width: 24, height: 24, tintColor: color }}
+              />
+            ),
+          }}
+        />
 
-      <Bottom.Screen
-        name='Menu'
-        component={BottomTab}
-        onPress={() => {
-          setVisible(true);
-        }}
-        options={{
-          headerShown: false,
-          tabBarIcon: ({ color, size }) => (
-            <Image
-              source={require('../images/BorderAllRounded.png')}
-              style={{ width: 24, height: 24, tintColor: color }}
-            />
-          ),
-        }}
-      />
-      
-      <Bottom.Screen
-        name='Settings'
-        component={Settings}
-        options={{
-          headerShown: false,
-          tabBarIcon: ({ color, size }) => (
-            <Image
-              source={require('../images/settings.png')}
-              style={{ width: 24, height: 24, tintColor: color }}
-            />
-          ),
-        }}
-      />
+        <Bottom.Screen
+          name="Menu"
+          component={BottomTab}
+          options={{
+            headerShown: false,
+            tabBarIcon: ({ color, size }) => (
+              <Image
+                source={require('../images/BorderAllRounded.png')}
+                style={{ width: 24, height: 24, tintColor: color }}
+              />
+            ),
+            tabBarButton: (props) => (
+              <TouchableOpacity
+                {...props}
+                onPress={() => setVisible(true)} // Show modal on press
+              />
+            ),
+          }}
+        />
 
-    </Bottom.Navigator>
+        <Bottom.Screen
+          name="Settings"
+          component={Settings}
+          options={{
+            headerShown: false,
+            tabBarIcon: ({ color, size }) => (
+              <Image
+                source={require('../images/settings.png')}
+                style={{ width: 24, height: 24, tintColor: color }}
+              />
+            ),
+          }}
+        />
+      </Bottom.Navigator>
 
-  )
-}
+      {/* Modal */}
+      <Modal
+        visible={isVisible}
+        transparent={true}
+        animationType="slide"
+        onRequestClose={() => setVisible(false)}
+      >
+        <View backDropOpacity={.2} style={{ flex: 1, justifyContent: 'flex-end' }}>
+          <View
+            style={{
+              height: 300,
+              backgroundColor: '#fff',
+              borderTopLeftRadius: 20,
+              borderTopRightRadius: 20,
+              padding: 20,
+            }}
+          >
+            <Text>Modal Content</Text>
+            <TouchableOpacity onPress={() => setVisible(false)}>
+              <Text style={{ color: 'blue', marginTop: 20 }}>Close</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+    </View>
+  );
+};
 
-export default HomeScreen
+export default HomeScreen;
