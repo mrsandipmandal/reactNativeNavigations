@@ -15,7 +15,7 @@ const Sidebar = ({ navigation }) => {
           alignSelf: 'center',
           marginTop: 10,
         }}>
-        Sandip{' '}
+        Sandip{' '}Mandal
       </Text>
       <View>
         <FlatList
@@ -48,6 +48,18 @@ const Sidebar = ({ navigation }) => {
                 height: 50,
                 }}
                 onPress={() => {
+                  if (item.title === 'Profile') {
+                    navigation.closeDrawer();
+                    alert(item.title+' Clicked');
+                  }
+                  if (item.title === 'Shear') {
+                    navigation.closeDrawer();
+                    alert(item.title+' Clicked');
+                  }
+                  if (item.title === 'Cart') {
+                    navigation.closeDrawer();
+                    alert(item.title+' Clicked');
+                  }
                   if (item.title === 'Logout') {
                     navigation.closeDrawer();
                     alert(item.title+' Clicked');

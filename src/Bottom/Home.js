@@ -25,7 +25,7 @@ const Home = ({ navigation }) => {
         </TouchableOpacity>
         <Text style={{ fontSize: 18, fontWeight: '600', marginLeft: 15 }}>React Native</Text>
       </View>
-      <Image source={require('../images/support.png')}
+      <Image source={require('../images/banner-2.webp')}
         style={{
           width: '94%',
           height: 170,
@@ -43,11 +43,11 @@ const Home = ({ navigation }) => {
         }}>Name Of The Item</Text>
       <FlatList
         data={[
-          require('../images/help-desk.png'),
-          require('../images/help-desk.png'),
-          require('../images/help-desk.png'),
-          require('../images/help-desk.png'),
-          require('../images/help-desk.png'),
+          require('../images/banner-1.jpg'),
+          require('../images/banner-1.jpg'),
+          require('../images/banner-1.jpg'),
+          require('../images/banner-1.jpg'),
+          require('../images/banner-1.jpg'),
         ]}
         renderItem={({ item, index }) => {
           return (

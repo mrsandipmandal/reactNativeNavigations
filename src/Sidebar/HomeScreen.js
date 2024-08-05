@@ -4,13 +4,14 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 import Home from '../Bottom/Home';
 import Settings from '../Bottom/Settings';
+import BottomTab from '../Bottom/BottomTab';
 
-const BottomTab = createBottomTabNavigator();
+const Bottom = createBottomTabNavigator();
 
 const HomeScreen = () => {
   return (
-    <BottomTab.Navigator>
-      <BottomTab.Screen
+    <Bottom.Navigator>
+      <Bottom.Screen
         name='Home'
         component={Home}
         options={{
@@ -23,7 +24,22 @@ const HomeScreen = () => {
           ),
         }}
       />
-      <BottomTab.Screen
+
+      <Bottom.Screen
+        name='Menu'
+        component={BottomTab}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <Image
+              source={require('../images/BorderAllRounded.png')}
+              style={{ width: 24, height: 24, tintColor: color }}
+            />
+          ),
+        }}
+      />
+      
+      <Bottom.Screen
         name='Settings'
         component={Settings}
         options={{
@@ -36,7 +52,9 @@ const HomeScreen = () => {
           ),
         }}
       />
-    </BottomTab.Navigator>
+
+    </Bottom.Navigator>
+
   )
 }
 
