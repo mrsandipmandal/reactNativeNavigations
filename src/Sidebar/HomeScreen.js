@@ -1,4 +1,4 @@
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, Alert } from 'react-native'
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
@@ -28,6 +28,9 @@ const HomeScreen = () => {
       <Bottom.Screen
         name='Menu'
         component={BottomTab}
+        onPress={() => {
+          setVisible(true);
+        }}
         options={{
           headerShown: false,
           tabBarIcon: ({ color, size }) => (

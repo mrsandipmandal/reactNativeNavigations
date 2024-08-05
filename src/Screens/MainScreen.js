@@ -1,7 +1,6 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { TabRouter } from '@react-navigation/native';
 
 import HomeScreen from '../Sidebar/HomeScreen';
 import Sidebar from '../Sidebar';

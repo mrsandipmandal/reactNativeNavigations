@@ -5,8 +5,16 @@ const Sidebar = ({ navigation }) => {
   return (
     <View style={{ flex: 1 }}>
       <View style={{ width: '100%', height: 5, backgroundColor: 'blue' }}></View>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.closeDrawer()
+        }}
+      >
+        <Image source={require('./images/ArrowBackRounded.png')}
+          style={{ width: 30, height: 30, marginLeft: 5, marginTop: 10 }} />
+      </TouchableOpacity>
       <Image source={require('./images/account.png')}
-        style={{ marginTop: 10, alignSelf: 'center', width: 80, height: 80, marginBottom: 10 }}
+        style={{ marginTop: 2, alignSelf: 'center', width: 80, height: 80, marginBottom: 10 }}
       />
       <Text
         style={{
@@ -40,36 +48,36 @@ const Sidebar = ({ navigation }) => {
 
           renderItem={({ item, index }) => {
             return (
-              <TouchableOpacity 
-              style={{ 
-                flexDirection: 'row', 
-                alignItems: 'center', 
-                widthh: '100%',
-                height: 50,
+              <TouchableOpacity
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  widthh: '100%',
+                  height: 50,
                 }}
                 onPress={() => {
                   if (item.title === 'Profile') {
                     navigation.closeDrawer();
-                    alert(item.title+' Clicked');
+                    alert(item.title + ' Clicked');
                   }
                   if (item.title === 'Shear') {
                     navigation.closeDrawer();
-                    alert(item.title+' Clicked');
+                    alert(item.title + ' Clicked');
                   }
                   if (item.title === 'Cart') {
                     navigation.closeDrawer();
-                    alert(item.title+' Clicked');
+                    alert(item.title + ' Clicked');
                   }
                   if (item.title === 'Logout') {
                     navigation.closeDrawer();
-                    alert(item.title+' Clicked');
+                    alert(item.title + ' Clicked');
                   }
                 }}
-                >
+              >
                 <Image source={item.icon}
                   style={{ width: 24, height: 24, tintColor: 'black', marginLeft: 15 }}
                 />
-                <Text style={{ fontSize: 18, color:'#000', marginLeft: 15 }}>{item.title}</Text>
+                <Text style={{ fontSize: 18, color: '#000', marginLeft: 15 }}>{item.title}</Text>
               </TouchableOpacity>
             )
           }
