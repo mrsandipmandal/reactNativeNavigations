@@ -1,7 +1,43 @@
 import { View, Text, Image, FlatList, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { logout } from './Sidebar/Logout';
+import AsyncStorage from '@react-native-async-storage/async-storage'
+
 
 const Sidebar = ({ navigation }) => {
+  const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
+  const [ppic, setPpic] = useState('');
+
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const userData = await AsyncStorage.getItem('@user_data');
+        if (userData !== null) {
+          const data = JSON.parse(userData);
+          setUsername(data.username);
+          setName(data.name);
+          setPpic(data.image_path);
+        }else{
+          navigation.replace('Login')
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      await logout(navigation);
+    } catch (error) {
+      console.error('Error handling logout:', error);
+    }
+  };
+
   return (
     <View style={{ flex: 1 }}>
       <View style={{ width: '100%', height: 5, backgroundColor: 'blue' }}></View>
@@ -13,7 +49,7 @@ const Sidebar = ({ navigation }) => {
         <Image source={require('./images/ArrowBackRounded.png')}
           style={{ width: 30, height: 30, marginLeft: 5, marginTop: 10 }} />
       </TouchableOpacity>
-      <Image source={require('./images/account.png')}
+      <Image source={ ppic ? { uri: ppic } : require('./images/account.png') }
         style={{ marginTop: 2, alignSelf: 'center', width: 80, height: 80, marginBottom: 10 }}
       />
       <Text
@@ -23,7 +59,7 @@ const Sidebar = ({ navigation }) => {
           alignSelf: 'center',
           marginTop: 10,
         }}>
-        Sandip{' '}Mandal
+        { name ? name : "Demo Name" }
       </Text>
       <View>
         <FlatList
@@ -37,8 +73,8 @@ const Sidebar = ({ navigation }) => {
               icon: require('./images/share.png')
             },
             {
-              title: 'Cart',
-              icon: require('./images/cart.png')
+              title: 'Star',
+              icon: require('./images/star.png')
             },
             {
               title: 'Logout',
@@ -70,7 +106,7 @@ const Sidebar = ({ navigation }) => {
                   }
                   if (item.title === 'Logout') {
                     navigation.closeDrawer();
-                    alert(item.title + ' Clicked');
+                    handleLogout();
                   }
                 }}
               >

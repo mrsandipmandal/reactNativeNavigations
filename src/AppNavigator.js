@@ -4,24 +4,43 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
 import Splash from './Screens/Splash';
 import MainScreen from './Screens/MainScreen';
+import Login from './Screens/Login';
+import Signup from './Screens/Signup';
 
 const stack = createStackNavigator();
 
 const AppNavigator = () => {
   return (
     <NavigationContainer>
+
       <stack.Navigator>
-        <stack.Screen 
-        name='Splash' 
-        component={Splash} 
-        options={{headerShown:false}}
-        />
+
         <stack.Screen
-        name='MainScreen'
-        component={MainScreen}
-        options={{headerShown:false}}
+          name='Login'
+          component={Login}
+          options={{ headerShown: false }}
         />
+
+        <stack.Screen
+          name='Signup'
+          component={Signup}
+          options={{ headerShown: false }}
+        /> 
+
+        <stack.Screen
+          name='Splash'
+          component={Splash}
+          options={{ headerShown: false }}
+        />
+
+        <stack.Screen
+          name='MainScreen'
+          component={MainScreen}
+          options={{ headerShown: false }}
+        />
+
       </stack.Navigator>
+
     </NavigationContainer>
   )
 }
