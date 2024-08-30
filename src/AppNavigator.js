@@ -6,6 +6,7 @@ import Splash from './Screens/Splash';
 import MainScreen from './Screens/MainScreen';
 import Login from './Screens/Login';
 import Signup from './Screens/Signup';
+import Profile from './Screens/Profile';
 
 const stack = createStackNavigator();
 
@@ -25,7 +26,7 @@ const AppNavigator = () => {
           name='Signup'
           component={Signup}
           options={{ headerShown: false }}
-        /> 
+        />
 
         <stack.Screen
           name='Splash'
@@ -39,6 +40,11 @@ const AppNavigator = () => {
           options={{ headerShown: false }}
         />
 
+        <stack.Screen
+          name='Profile'
+          component={Profile}
+          options={{ headerShown: false }}
+        />
       </stack.Navigator>
 
     </NavigationContainer>

@@ -12,7 +12,7 @@ const Splash = ({ navigation }) => {
     const checkLoginStatus = async () => {
         try {
             const res = await loginCheck();
-            console.log(res)
+            // console.log(res)
             setTimeout(() => {
                 if (!res) {
                     navigation.replace('MainScreen');

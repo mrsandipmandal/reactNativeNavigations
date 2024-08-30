@@ -115,11 +115,17 @@ export default function Signup({ navigation }) {
             style={styles.container}
         >
             <ScrollView contentContainerStyle={styles.inner}>
+            {/* <ScrollView 
+                contentContainerStyle={styles.inner} 
+                style={styles.container2}
+                showsVerticalScrollIndicator='false'  // Hides vertical scrollbar
+                showsHorizontalScrollIndicator='false' // Hides horizontal scrollbar
+                > */}
                 <View style={styles.container}>
-                    <Image
+                    {/* <Image
                         source={{ uri: 'https://www.bootdey.com/image/280x280/20B2AA/20B2AA' }}
                         style={styles.background}
-                    />
+                    /> */}
                     {/* <View style={styles.logoContainer}>
                         <Image
                             source={{ uri: 'https://www.bootdey.com/img/Content/avatar/avatar7.png' }}
@@ -127,10 +133,12 @@ export default function Signup({ navigation }) {
                         />
                     </View> */}
                     <View style={[styles.formContainer, keyboardVisible && styles.formContainerWithKeyboard]}>
-                        <Text style={styles.title}>Sign Up</Text>
-                        <View style={styles.card}>
+                        <View style={styles.cardSignup}>
+
+                            <Text style={styles.title}>Sign Up</Text>
+
                             <View style={styles.inputContainer}>
-                                <Text style={styles.label}>First Name</Text>
+                                {/* <Text style={styles.label}>First Name</Text> */}
                                 <TextInput
                                     style={styles.input}
                                     value={fname}
@@ -142,7 +150,7 @@ export default function Signup({ navigation }) {
                             </View>
 
                             <View style={styles.inputContainer}>
-                                <Text style={styles.label}>Last Name</Text>
+                                {/* <Text style={styles.label}>Last Name</Text> */}
                                 <TextInput
                                     style={styles.input}
                                     value={lname}
@@ -154,7 +162,7 @@ export default function Signup({ navigation }) {
                             </View>
 
                             <View style={styles.inputContainer}>
-                                <Text style={styles.label}>Mobile</Text>
+                                {/* <Text style={styles.label}>Mobile</Text> */}
                                 <TextInput
                                     style={styles.input}
                                     value={mobile}
@@ -167,7 +175,7 @@ export default function Signup({ navigation }) {
                             </View>
 
                             <View style={styles.inputContainer}>
-                                <Text style={styles.label}>Email</Text>
+                                {/* <Text style={styles.label}>Email</Text> */}
                                 <TextInput
                                     style={styles.input}
                                     value={email}
@@ -179,7 +187,7 @@ export default function Signup({ navigation }) {
                             </View>
 
                             <View style={styles.inputContainer}>
-                                <Text style={styles.label}>Password</Text>
+                                {/* <Text style={styles.label}>Password</Text> */}
                                 <TextInput
                                     style={styles.input}
                                     value={password}

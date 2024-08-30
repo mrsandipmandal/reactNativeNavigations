@@ -75,22 +75,23 @@ export default Login = ({ navigation }) => {
       style={styles.container}
     >
       <View style={styles.container}>
-        <Image
+        {/* <Image
           source={{ uri: 'https://www.bootdey.com/image/280x280/20B2AA/20B2AA' }}
           style={styles.background}
-        />
-        <View style={styles.logoContainer}>
+        /> */}
+        {/* <View style={styles.logoContainer}>
           <Image
             source={{ uri: 'https://www.bootdey.com/img/Content/avatar/avatar7.png' }}
             style={styles.logo}
           />
-        </View>
+        </View> */}
         <View style={styles.formContainer}>
-          <Text style={styles.title}>Login</Text>
-          <View style={styles.card}>
+          {/* <Text style={styles.title}>Login</Text> */}
+          <View style={styles.cardLogin}>
 
             <View style={styles.inputContainer}>
-              <Text style={styles.label}>Username</Text>
+            <Text style={styles.title}>Login</Text>
+              {/* <Text style={styles.label}>Username</Text> */}
               <TextInput
                 style={styles.input}
                 value={username}
@@ -102,7 +103,7 @@ export default Login = ({ navigation }) => {
             </View>
 
             <View style={styles.inputContainer}>
-              <Text style={styles.label}>Password</Text>
+              {/* <Text style={styles.label}>Password</Text> */}
               <TextInput
                 style={styles.input}
                 value={password}
@@ -118,7 +119,11 @@ export default Login = ({ navigation }) => {
               <Text style={styles.buttonText}>Login</Text>
             </TouchableOpacity>
 
-            <Text style={styles.linkText}>
+            <Text style={styles.forgotText}>
+              <Text onPress={() => navigation.navigate('Signup')}>Forgot Password</Text>
+            </Text>
+
+            <Text style={styles.signupText}>
               Dont't have an account?{' '}
               <Text onPress={() => navigation.navigate('Signup')}>Signup</Text>
             </Text>

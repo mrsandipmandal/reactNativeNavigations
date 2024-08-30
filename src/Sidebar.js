@@ -8,6 +8,8 @@ const Sidebar = ({ navigation }) => {
   const [username, setUsername] = useState('');
   const [name, setName] = useState('');
   const [ppic, setPpic] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
 
 
   useEffect(() => {
@@ -15,11 +17,14 @@ const Sidebar = ({ navigation }) => {
       try {
         const userData = await AsyncStorage.getItem('@user_data');
         if (userData !== null) {
+          // console.log(userData);
           const data = JSON.parse(userData);
           setUsername(data.username);
           setName(data.name);
           setPpic(data.image_path);
-        }else{
+          setEmail(data.email);
+          setPhone(data.mobile);
+        } else {
           navigation.replace('Login')
         }
       } catch (error) {
@@ -38,36 +43,68 @@ const Sidebar = ({ navigation }) => {
     }
   };
 
+  const handleProfile = () => {
+    const profileData = {
+      email: email,
+      phone: phone,
+      name: name,
+      username: username,
+      ppic: ppic,
+    };
+
+    navigation.navigate('Profile', { profileData });
+  };
+
   return (
     <View style={{ flex: 1 }}>
-      <View style={{ width: '100%', height: 5, backgroundColor: 'blue' }}></View>
+      <View style={{
+        width: '100%',
+        height: 5,
+        backgroundColor: 'blue'
+      }}></View>
       <TouchableOpacity
         onPress={() => {
           navigation.closeDrawer()
         }}
       >
         <Image source={require('./images/ArrowBackRounded.png')}
-          style={{ width: 30, height: 30, marginLeft: 5, marginTop: 10 }} />
+          style={{
+            width: 30,
+            height: 30,
+            marginLeft: 5,
+            marginTop: 10
+          }} />
       </TouchableOpacity>
-      <Image source={ ppic ? { uri: ppic } : require('./images/account.png') }
-        style={{ marginTop: 2, alignSelf: 'center', width: 80, height: 80, marginBottom: 10 }}
-      />
-      <Text
-        style={{
-          fontSize: 20,
-          fontWeight: '700',
-          alignSelf: 'center',
-          marginTop: 10,
+      <View style={{ marginTop: 10 }}>
+        <TouchableOpacity onPress={() => {
+          navigation.closeDrawer();
+          handleProfile();
         }}>
-        { name ? name : "Demo Name" }
-      </Text>
+          <Image source={ppic ? { uri: ppic } : require('./images/account.png')}
+            style={{
+              marginTop: 2,
+              alignSelf: 'center',
+              width: 100,
+              height: 100,
+              borderRadius: 50,
+              marginBottom: 10,
+              borderWidth: 1,
+              borderColor: 'lightgray'
+            }}
+          />
+        </TouchableOpacity>
+        <Text
+          style={{
+            fontSize: 20,
+            fontWeight: 700,
+            alignSelf: 'center',
+          }}>
+          {name ? name : "Demo Name"}
+        </Text>
+      </View>
       <View>
         <FlatList
           data={[
-            {
-              title: 'Profile',
-              icon: require('./images/account.png')
-            },
             {
               title: 'Shear',
               icon: require('./images/share.png')
@@ -92,10 +129,6 @@ const Sidebar = ({ navigation }) => {
                   height: 50,
                 }}
                 onPress={() => {
-                  if (item.title === 'Profile') {
-                    navigation.closeDrawer();
-                    alert(item.title + ' Clicked');
-                  }
                   if (item.title === 'Shear') {
                     navigation.closeDrawer();
                     alert(item.title + ' Clicked');
