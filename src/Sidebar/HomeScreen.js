@@ -1,11 +1,11 @@
-import { View, Text, Image, TouchableOpacity, Modal } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Home from '../Bottom/Home';
 import Settings from '../Bottom/Settings';
 import BottomTab from '../Bottom/BottomTab';
-import BSheet from '../Bottom/BSheet';
+import BottomSheet from '../Bottom/BottomSheet';
 
 const Bottom = createBottomTabNavigator();
 
@@ -49,7 +49,7 @@ const HomeScreen = () => {
           component={BottomTab}
           options={{
             headerShown: false,
-            tabBarIcon: ({ color, size }) => (
+            tabBarIcon: ({ color }) => (
               <Image
                 source={require('../images/cart.png')}
                 style={{ width: 24, height: 24, tintColor: color }}
@@ -57,9 +57,10 @@ const HomeScreen = () => {
             ),
             tabBarButton: (props) => (
               <TouchableOpacity
-                {...props}
-                onPress={() => setVisible(true)} // Show modal on press
-              />
+              {...props}
+              onPress={() => setVisible(true)} // Show modal on press
+            >
+            </TouchableOpacity>
             ),
           }}
         />
@@ -94,30 +95,9 @@ const HomeScreen = () => {
 
       </Bottom.Navigator>
 
-      {/* Modal */}
-      <Modal
-        visible={isVisible}
-        transparent={true}
-        animationType="slide"
-        onRequestClose={() => setVisible(false)}
-      >
-        <View backDropOpacity={.2} style={{ flex: 1, justifyContent: 'flex-end' }}>
-          <View
-            style={{
-              height: 300,
-              backgroundColor: '#fff',
-              borderTopLeftRadius: 20,
-              borderTopRightRadius: 20,
-              padding: 20,
-            }}
-          >
-            <Text>Modal Content</Text>
-            <TouchableOpacity onPress={() => setVisible(false)}>
-              <Text style={{ color: 'blue', marginTop: 20 }}>Close</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
+      {/* Pass isVisible and setVisible as props */}
+      <BottomSheet isVisible={isVisible} setVisible={setVisible} />
+
     </View>
   );
 };
